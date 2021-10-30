@@ -1,0 +1,25 @@
+@import '../theme.scss';
+
+.Toolbar {
+  width: 48px;
+  background-color: $bg-toolbar;
+
+  & .tool-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+
+    font-size: 18px;
+    fill: $fg-toolbar;
+    color: $fg-toolbar;
+    background-color: transparent;
+
+    &:hover {
+      color: $fg-toolbar-hover;
+      fill: $fg-toolbar-hover;
+      background-color: $bg-toolbar-hover;
+    }
+  }
+}
