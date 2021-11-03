@@ -1,3 +1,5 @@
+export type DefaultModelData<T> = Omit<T, "id">;
+
 export enum ModelType {
   Page = "Page",
   Rectangle = "Rectangle",

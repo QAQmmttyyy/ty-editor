@@ -1,13 +1,14 @@
-import { IContainer } from "../model";
+import { DefaultModelData, IContainer, ModelType } from "../model";
 
 export interface IPage extends IContainer {}
 
-const defaultData: Partial<IPage> = {
+const defaultData: DefaultModelData<IPage> = {
   // TODO name 编号
+  type: ModelType.Page,
   name: "页面",
+  components: [],
 };
 
-export function createPage(): IPage {
-  // 原型方式创建
-  return Object.create(defaultData);
+export function createPage(payload: { id: string }): IPage {
+  return Object.assign({}, defaultData, payload);
 }

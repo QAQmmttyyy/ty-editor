@@ -1,11 +1,12 @@
-import { IBase, ISize } from "../model";
+import { DefaultModelData, IBase, ISize, ModelType } from "../model";
 
 export interface IRectangle extends IBase {
   size: ISize;
 }
 
-const defaultData: Partial<IRectangle> = {
+const defaultData: DefaultModelData<IRectangle> = {
   // TODO name 编号
+  type: ModelType.Rectangle,
   name: "矩形",
   size: {
     width: 100,
@@ -13,7 +14,6 @@ const defaultData: Partial<IRectangle> = {
   },
 };
 
-export function createRectangle(): IRectangle {
-  // 原型方式创建
-  return Object.create(defaultData);
+export function createRectangle(payload: { id: string }): IRectangle {
+  return Object.assign({}, defaultData, payload);
 }
