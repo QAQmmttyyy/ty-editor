@@ -1,9 +1,10 @@
 import { createModelSubject } from "../factory";
 import { BaseSubject } from "../modelSubject";
-import { IArtboard } from "./ArtBoard";
+import { IArtboard } from "./Artboard";
+import { ComponentSubject } from "./types";
 
-export class ArtboardSubject extends BaseSubject {
-  public components: BaseSubject[];
+export class ArtboardSubject extends BaseSubject<IArtboard> {
+  public components: ComponentSubject[];
 
   constructor(data: IArtboard) {
     super(data);

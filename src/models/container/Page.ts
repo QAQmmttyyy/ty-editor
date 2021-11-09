@@ -1,6 +1,7 @@
+import { IArtboard } from "../components";
 import { DefaultModelData, IContainer, ModelType } from "../model";
 
-export interface IPage extends IContainer {}
+export interface IPage extends IContainer<IArtboard> {}
 
 const defaultData: DefaultModelData<IPage> = {
   // TODO name 编号

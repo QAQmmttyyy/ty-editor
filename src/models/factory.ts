@@ -1,13 +1,21 @@
 import { nanoid } from "nanoid";
 import { IBase, ModelType } from "./model";
-import { createRectangle, IRectangle } from "./components/Rectangle";
-import { RectangleSubject } from "./components/RectangleSubject";
-import { createPage, IPage } from "./container/Page";
-import { PageSubject } from "./container/PageSubject";
-import { createArtboard, IArtboard } from "./container/ArtBoard";
-import { ArtboardSubject } from "./container/ArtboardSubject";
-import { createProject, IProject } from "./container/Project";
-import { ProjectSubject } from "./container/ProjectSubject";
+import {
+  ArtboardSubject,
+  IArtboard,
+  RectangleSubject,
+  IRectangle,
+  createArtboard,
+  createRectangle,
+} from "./components";
+import {
+  ProjectSubject,
+  IProject,
+  PageSubject,
+  IPage,
+  createProject,
+  createPage,
+} from "./container";
 
 export function createModelSubject(data: IBase) {
   switch (data.type) {

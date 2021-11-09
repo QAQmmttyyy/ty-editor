@@ -1,6 +1,7 @@
+import { IComponent } from "./types";
 import { DefaultModelData, IContainer, ModelType } from "../model";
 
-export interface IArtboard extends IContainer {}
+export interface IArtboard extends IContainer<IComponent> {}
 
 const defaultData: DefaultModelData<IArtboard> = {
   // TODO name 编号

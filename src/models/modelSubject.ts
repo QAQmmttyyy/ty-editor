@@ -1,9 +1,10 @@
 import { IBase } from "./model";
 
-export class BaseSubject {
-  public data: IBase;
+// 把抽象接口放在这里
+export class BaseSubject<T extends IBase> {
+  public data: T;
 
-  constructor(data: IBase) {
+  constructor(data: T) {
     this.data = data;
   }
 

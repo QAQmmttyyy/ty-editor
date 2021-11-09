@@ -13,8 +13,8 @@ export interface IBase {
   type: ModelType;
 }
 
-export interface IContainer extends IBase {
-  components: IBase[];
+export interface IContainer<T> extends IBase {
+  components: T[];
 }
 
 export interface ISize {
