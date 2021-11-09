@@ -1,7 +1,9 @@
 export type DefaultModelData<T> = Omit<T, "id">;
 
 export enum ModelType {
+  Project = "Project",
   Page = "Page",
+  Artboard = "Artboard",
   Rectangle = "Rectangle",
 }
 
