@@ -1,5 +1,3 @@
-export type DefaultModelData<T> = Omit<T, "id">;
-
 export enum ModelType {
   Project = "Project",
   Page = "Page",
@@ -7,14 +5,12 @@ export enum ModelType {
   Rectangle = "Rectangle",
 }
 
-export interface IBase {
+export interface IModel {
   id: string;
   name: string;
   type: ModelType;
-}
-
-export interface IContainer<T> extends IBase {
-  components: T[];
+  components: IModel[];
+  size: ISize;
 }
 
 export interface ISize {

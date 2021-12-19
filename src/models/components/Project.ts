@@ -1,15 +1,17 @@
-import { IArtboard } from "../components";
-import { DefaultModelData, IContainer, ModelType } from "../model";
+import { nanoid } from "nanoid";
+import { IModel, ModelType } from "../model";
 
-export interface IProject extends IContainer<IArtboard> {}
+export interface IProject extends IModel {}
 
-const defaultData: DefaultModelData<IProject> = {
-  // TODO name 编号
-  type: ModelType.Project,
-  name: "项目",
-  components: [],
-};
-
-export function createProject(payload: { id: string }): IProject {
-  return Object.assign({}, defaultData, payload);
+export function createProject(): IProject {
+  return {
+    id: nanoid(),
+    type: ModelType.Project,
+    name: "项目", // TODO name 编号
+    components: [],
+    size: {
+      width: 0,
+      height: 0,
+    },
+  };
 }

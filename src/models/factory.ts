@@ -1,5 +1,5 @@
-import { nanoid } from "nanoid";
-import { IBase, ModelType } from "./model";
+import { IModel, ModelType } from "./model";
+import { ModelSubject } from "./modelSubject";
 import {
   ArtboardSubject,
   IArtboard,
@@ -15,35 +15,34 @@ import {
   ProjectSubject,
 } from "./components";
 
-export function createModelSubject(data: IBase) {
+export function createModelSubject(data: IModel): ModelSubject<IModel> {
   switch (data.type) {
     case ModelType.Project:
-      return new ProjectSubject(data as IProject);
+      return new ProjectSubject(data);
 
     case ModelType.Page:
-      return new PageSubject(data as IPage);
+      return new PageSubject(data);
 
     case ModelType.Artboard:
-      return new ArtboardSubject(data as IArtboard);
+      return new ArtboardSubject(data);
 
     case ModelType.Rectangle:
-      return new RectangleSubject(data as IRectangle);
+      return new RectangleSubject(data);
   }
 }
 
-export function createModel(option: { type: ModelType }) {
-  const id = nanoid();
+export function createModel(option: { type: ModelType }): IModel {
   switch (option.type) {
     case ModelType.Project:
-      return createProject({ id });
+      return createProject();
 
     case ModelType.Page:
-      return createPage({ id });
+      return createPage();
 
     case ModelType.Artboard:
-      return createArtboard({ id });
+      return createArtboard();
 
     case ModelType.Rectangle:
-      return createRectangle({ id });
+      return createRectangle();
   }
 }

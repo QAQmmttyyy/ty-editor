@@ -1,19 +1,17 @@
-import { DefaultModelData, IBase, ISize, ModelType } from "../model";
+import { nanoid } from "nanoid";
+import { IModel, ModelType } from "../model";
 
-export interface IRectangle extends IBase {
-  size: ISize;
-}
+export interface IRectangle extends IModel {}
 
-const defaultData: DefaultModelData<IRectangle> = {
-  // TODO name 编号
-  type: ModelType.Rectangle,
-  name: "矩形",
-  size: {
-    width: 100,
-    height: 100,
-  },
-};
-
-export function createRectangle(payload: { id: string }): IRectangle {
-  return Object.assign({}, defaultData, payload);
+export function createRectangle(): IRectangle {
+  return {
+    id: nanoid(),
+    type: ModelType.Project,
+    name: "矩形", // TODO name 编号
+    components: [],
+    size: {
+      width: 0,
+      height: 0,
+    },
+  };
 }
