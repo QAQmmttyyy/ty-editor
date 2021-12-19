@@ -1,3 +1,7 @@
+export * from "./Project";
+export * from "./ProjectSubject";
+export * from "./Page";
+export * from "./PageSubject";
 export * from "./Artboard";
 export * from "./ArtboardSubject";
 export * from "./Rectangle";

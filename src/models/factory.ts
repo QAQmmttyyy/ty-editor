@@ -7,15 +7,13 @@ import {
   IRectangle,
   createArtboard,
   createRectangle,
-} from "./components";
-import {
-  ProjectSubject,
+  createPage,
+  createProject,
+  IPage,
   IProject,
   PageSubject,
-  IPage,
-  createProject,
-  createPage,
-} from "./container";
+  ProjectSubject,
+} from "./components";
 
 export function createModelSubject(data: IBase) {
   switch (data.type) {

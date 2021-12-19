@@ -1,4 +1,4 @@
-import { IArtboard } from "../components";
+import { IArtboard } from ".";
 import { DefaultModelData, IContainer, ModelType } from "../model";
 
 export interface IPage extends IContainer<IArtboard> {}
