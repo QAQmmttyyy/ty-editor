@@ -1,7 +1,7 @@
-import { IArtboard } from "./Artboard";
+import { ArtboardInterface } from "./Artboard";
 import { ArtboardSubject } from "./ArtboardSubject";
-import { IRectangle } from "./Rectangle";
+import { RectangleInterface } from "./Rectangle";
 import { RectangleSubject } from "./RectangleSubject";
 
-export type IComponent = IArtboard | IRectangle;
+export type ComponentInterface = ArtboardInterface | RectangleInterface;
 export type ComponentSubject = ArtboardSubject | RectangleSubject;

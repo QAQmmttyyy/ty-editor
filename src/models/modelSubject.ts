@@ -1,10 +1,10 @@
 import { createModelSubject } from "./factory";
-import { IModel } from "./model";
+import { ModelInterface } from "./model";
 
 // 把抽象接口放在这里
-export class ModelSubject<T extends IModel> {
+export class ModelSubject<T extends ModelInterface> {
   public data: T;
-  public components: ModelSubject<IModel>[];
+  public components: ModelSubject<ModelInterface>[];
 
   constructor(data: T) {
     this.data = data;

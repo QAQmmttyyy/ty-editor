@@ -1,21 +1,17 @@
-import { IModel, ModelType } from "./model";
+import { ModelInterface, ModelType } from "./model";
 import { ModelSubject } from "./modelSubject";
 import {
   ArtboardSubject,
-  IArtboard,
   RectangleSubject,
-  IRectangle,
   createArtboard,
   createRectangle,
   createPage,
   createProject,
-  IPage,
-  IProject,
   PageSubject,
   ProjectSubject,
 } from "./components";
 
-export function createModelSubject(data: IModel): ModelSubject<IModel> {
+export function createModelSubject(data: ModelInterface): ModelSubject<ModelInterface> {
   switch (data.type) {
     case ModelType.Project:
       return new ProjectSubject(data);
@@ -31,7 +27,7 @@ export function createModelSubject(data: IModel): ModelSubject<IModel> {
   }
 }
 
-export function createModel(option: { type: ModelType }): IModel {
+export function createModel(option: { type: ModelType }): ModelInterface {
   switch (option.type) {
     case ModelType.Project:
       return createProject();

@@ -1,12 +1,12 @@
 import { nanoid } from "nanoid";
-import { IModel, ModelType } from "../model";
+import { ModelInterface, ModelType } from "../model";
 
-export interface IArtboard extends IModel {}
+export interface ArtboardInterface extends ModelInterface {}
 
-export function createArtboard(): IArtboard {
+export function createArtboard(): ArtboardInterface {
   return {
     id: nanoid(),
-    type: ModelType.Project,
+    type: ModelType.Artboard,
     name: "画板", // TODO name 编号
     components: [],
     size: {

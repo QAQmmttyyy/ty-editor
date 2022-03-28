@@ -1,4 +1,4 @@
 import { ModelSubject } from "../modelSubject";
-import { IProject } from "./Project";
+import { ProjectInterface } from "./Project";
 
-export class ProjectSubject extends ModelSubject<IProject> {}
+export class ProjectSubject extends ModelSubject<ProjectInterface> {}

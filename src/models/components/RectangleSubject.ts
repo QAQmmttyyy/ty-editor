@@ -1,4 +1,4 @@
 import { ModelSubject } from "../modelSubject";
-import { IRectangle } from "./Rectangle";
+import { RectangleInterface } from "./Rectangle";
 
-export class RectangleSubject extends ModelSubject<IRectangle> {}
+export class RectangleSubject extends ModelSubject<RectangleInterface> {}

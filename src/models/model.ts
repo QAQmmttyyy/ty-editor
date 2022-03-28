@@ -5,15 +5,15 @@ export enum ModelType {
   Rectangle = "Rectangle",
 }
 
-export interface IModel {
+export interface ModelInterface {
   id: string;
   name: string;
   type: ModelType;
-  components: IModel[];
-  size: ISize;
+  components: ModelInterface[];
+  size: SizeInterface;
 }
 
-export interface ISize {
+export interface SizeInterface {
   width: number;
   height: number;
 }

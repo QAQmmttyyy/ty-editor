@@ -1,4 +1,4 @@
 import { ModelSubject } from "../modelSubject";
-import { IArtboard } from "./Artboard";
+import { ArtboardInterface } from "./Artboard";
 
-export class ArtboardSubject extends ModelSubject<IArtboard> {}
+export class ArtboardSubject extends ModelSubject<ArtboardInterface> {}

@@ -1,12 +1,12 @@
 import { nanoid } from "nanoid";
-import { IModel, ModelType } from "../model";
+import { ModelInterface, ModelType } from "../model";
 
-export interface IRectangle extends IModel {}
+export interface RectangleInterface extends ModelInterface {}
 
-export function createRectangle(): IRectangle {
+export function createRectangle(): RectangleInterface {
   return {
     id: nanoid(),
-    type: ModelType.Project,
+    type: ModelType.Rectangle,
     name: "矩形", // TODO name 编号
     components: [],
     size: {

@@ -1,9 +1,9 @@
 import { nanoid } from "nanoid";
-import { IModel, ModelType } from "../model";
+import { ModelInterface, ModelType } from "../model";
 
-export interface IPage extends IModel {}
+export interface PageInterface extends ModelInterface {}
 
-export function createPage(): IPage {
+export function createPage(): PageInterface {
   return {
     id: nanoid(),
     type: ModelType.Project,

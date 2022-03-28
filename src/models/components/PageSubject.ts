@@ -1,4 +1,4 @@
 import { ModelSubject } from "../modelSubject";
-import { IPage } from "./Page";
+import { PageInterface } from "./Page";
 
-export class PageSubject extends ModelSubject<IPage> {}
+export class PageSubject extends ModelSubject<PageInterface> {}
