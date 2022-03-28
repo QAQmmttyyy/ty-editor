@@ -1,84 +1,64 @@
 import React from "react";
-import {
-  combineLatest,
-  distinctUntilChanged,
-  filter,
-  fromEvent,
-  map,
-  merge,
-  mergeMapTo,
-  share,
-  Subscription,
-  take,
-  takeUntil,
-} from "rxjs";
+import { useDrag } from "@use-gesture/react";
+import { useAppStore } from "../stores/app";
+import { createModel, createModelSubject, ModelType } from "../models";
 
 import "./Viewer.scss";
 
 export default function View() {
-  const viewDomRef = React.useRef<HTMLDivElement>(null);
+  // 订阅创建组件是的预览数据
+  const { previewComps, updatePreviewComps } = useAppStore();
 
-  React.useEffect(() => {
-    if (!viewDomRef.current) {
-      return;
-    }
+  // 处理创建组件交互
+  const bindDrag = useDrag((dragState) => {
+    // TODO judge create tool type
+    // TODO position calc
+    console.log(dragState);
 
-    // keyboard handle
-    const keydown$ = fromEvent<KeyboardEvent>(document.body, "keydown");
-    const keyup$ = fromEvent<KeyboardEvent>(document.body, "keyup");
-    const keyEvent$ = merge(keydown$, keyup$).pipe(
-      distinctUntilChanged(
-        (prev, curr) => prev.key === curr.key && prev.type === curr.type
-      ),
-      share()
-    );
-    // Create KeyboardEvent Observable for specified KeyCode
-    const createSpecialKeyEventStream = (key: string) =>
-      keyEvent$.pipe(filter((event) => event.key === key));
+    const { event, movement, tap } = dragState;
+    switch (event.type) {
+      case "pointerdown": {
+        const model = createModel({ type: ModelType.Rectangle });
+        const subject = createModelSubject(model);
+        console.log(subject);
 
-    // usage
-    const modifierKeys = ["Control", "Alt", "Shift"];
-    const modifierKeys$ = modifierKeys.map((key) =>
-      createSpecialKeyEventStream(key).pipe(
-        map((event) => (event.type === "keydown" ? key : ""))
-      )
-    );
-    const modifierKeyPressCombo$ = combineLatest(modifierKeys$).pipe(
-      map((keys) => keys.join(""))
-    );
-    const modifierKeyPressComboSub = modifierKeyPressCombo$.subscribe(
-      (value) => {
-        console.log(value);
+        updatePreviewComps([subject]);
+        break;
       }
-    );
 
-    // mouse handle
-    const mousedown$ = fromEvent(viewDomRef.current, "mousedown");
-    const mousemove$ = fromEvent(document, "mousemove");
-    const mouseup$ = fromEvent(document, "mouseup");
+      case "pointermove": {
+        const [width, height] = movement.map(Math.abs).map(Math.round);
+        const subject = previewComps[0].updateSize({ width, height });
+        updatePreviewComps([subject]);
+        break;
+      }
 
-    let mouseupSub: Subscription | null = null;
+      case "pointerup": {
+        if (tap) {
+          const subject = previewComps[0].updateSize({
+            width: 100,
+            height: 100,
+          });
+          updatePreviewComps([subject]);
+        }
+        console.log(previewComps);
+        // updatePreviewComps([]);
+        break;
+      }
 
-    const mousedownSub = mousedown$.subscribe((x) => {
-      mouseupSub = mouseup$.subscribe((x) => {
-        mouseupSub?.unsubscribe();
-        console.log(x.type);
-      });
+      default:
+        // noop
+        break;
+    }
+  });
 
-      console.log(x.type);
-    });
-
-    const mousemoveSub = mousedown$
-      .pipe(mergeMapTo(mousemove$.pipe(takeUntil(mouseup$))))
-      .subscribe((x) => console.log(x.type));
-
-    return () => {
-      modifierKeyPressComboSub.unsubscribe();
-      mousedownSub.unsubscribe();
-      mousemoveSub.unsubscribe();
-      mouseupSub?.unsubscribe();
-    };
-  }, []);
-
-  return <div ref={viewDomRef} className="View"></div>;
+  return (
+    <div className="View" {...bindDrag()}>
+      <div className="preview-comps-layer">
+        <pre style={{ fontFamily: "Consolas, monospace" }}>
+          {JSON.stringify(previewComps, null, 2)}
+        </pre>
+      </div>
+    </div>
+  );
 }
